@@ -5,11 +5,19 @@ function preload() {
 }
 
 function setup() {
-    canvas = createCanvas(640, 450);
+    canvas = createCanvas(800, 450);
     canvas.parent('canvas_div');
 }
 
 function draw() {
-    image(bg_img, 640, 450);
-
+    image(bg_img,0,0, 800, 450);
+    fill('#ff0');
+    textSize(18);
+    text('Dog', 200, 75);
+    text('Cat', 350, 125);
+    noFill()
+    stroke('#ff0')
+    rect(100, 55, 400, 375);
+    rect(350, 100, 375, 345);
+    
 }
