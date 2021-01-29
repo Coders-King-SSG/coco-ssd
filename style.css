@@ -1,0 +1,20 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.heading {
+    width: 100%;
+    font-size: 20px!important;
+    margin-top: 0px;
+}
+
+.status_btn {
+    font-size: 14px!important;
+}
+
+canvas {
+    border: #eea236 3px solid;
+    border-radius: 15px;
+    box-shadow: #eea236 8px 8px 18px;
+}
