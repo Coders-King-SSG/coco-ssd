@@ -1,3 +1,5 @@
+bg_img="";
+
 function preload() {
     bg_img = loadImage('dog_cat.jpg');
 }
