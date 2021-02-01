@@ -1,5 +1,7 @@
-bg_img="";
-status = null;
+bg_img = "";
+status = "";
+objects = [];
+var r, g, b;
 
 function preload() {
     bg_img = loadImage('dog_cat.jpg');
@@ -15,6 +17,7 @@ function setup() {
 function modelLoaded() {
     console.log('Model loaded');
     status = true;
+    objectDetector.detect(bg_img, gotResults);
 }
 
 function gotResults(error, results) {
@@ -22,18 +25,41 @@ function gotResults(error, results) {
         console.error(error);
     } else {
         console.log(results);
+        objects = results;
     }
 }
 
 function draw() {
-    image(bg_img,0,0, 800, 450);
-    fill('#ff0');
-    textSize(18);
-    text('Dog', 110, 75);
-    text('Cat', 360, 125);
-    noFill()
-    stroke('#ff0')
-    rect(100, 55, 400, 375);
-    rect(350, 100, 375, 345);
-    objectDetector.detect(bg_img, gotResults);
+    image(bg_img, 0, 0, 800, 450);
+    if (status != "") {
+        document.getElementById('status').innerHTML = "Detected objects";
+        // objects.forEach(elm => {
+        //     confidence = floor(elm[i].confidence * 100);
+        //     r = round(random(0, 255));
+        //     g = round(random(0, 255));
+        //     b = round(random(0, 255));
+        //     color = `rgb(${r}, ${g}, ${b})`;
+        //     fill(color);
+        //     textSize(18);
+        //     txt = elm[i].label +'\t('+ confidence + '% sure)';
+        //     text(txt, elm[i].x, elm[i].y);
+        //     noFill();
+        //     stroke(color);
+        //     rect(elm[i].x, elm[i].y, elm[i].width, elm[i].height);
+        // });
+        for (i = 0; i < objects.length; i++) {
+            confidence = floor(elm[i].confidence * 100);
+            r = random(0, 255);
+            g = random(0, 255);
+            b = random(0, 255);
+            color = `rgb(${r}, ${g}, ${b})`;
+            fill(color);
+            textSize(18);
+            txt = elm[i].label + '\t(' + confidence + '% sure)';
+            text(txt, elm[i].x, elm[i].y);
+            noFill();
+            stroke(color);
+            rect(elm[i].x, elm[i].y, elm[i].width, elm[i].height);
+        }
+    }
 }
