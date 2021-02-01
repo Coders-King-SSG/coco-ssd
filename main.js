@@ -33,33 +33,33 @@ function draw() {
     image(bg_img, 0, 0, 800, 450);
     if (status != "") {
         document.getElementById('status').innerHTML = "Detected objects";
-        // objects.forEach(elm => {
-        //     confidence = floor(elm[i].confidence * 100);
-        //     r = round(random(0, 255));
-        //     g = round(random(0, 255));
-        //     b = round(random(0, 255));
+        objects.forEach(elm => {
+            confidence = floor(elm.confidence * 100);
+            r = round(random(0, 255));
+            g = round(random(0, 255));
+            b = round(random(0, 255));
+            colour = `rgb(${r}, ${g}, ${b})`;
+            fill(colour);
+            textSize(18);
+            txt = elm.label + '\t(' + confidence + '% sure)';
+            text(txt, elm.x + 15, elm.y +15);
+            noFill();
+            stroke(colour);
+            rect(elm.x, elm.y, elm.width, elm.height);
+        });
+        // for (i = 0; i < objects.length; i++) {
+        //     confidence = floor(objects[i].confidence * 100);
+        //     r = random(0, 255);
+        //     g = random(0, 255);
+        //     b = random(0, 255);
         //     color = `rgb(${r}, ${g}, ${b})`;
         //     fill(color);
         //     textSize(18);
-        //     txt = elm[i].label +'\t('+ confidence + '% sure)';
-        //     text(txt, elm[i].x, elm[i].y);
+        //     txt = objects[i].label + '\t(' + confidence + '% sure)';
+        //     text(txt, objects[i].x, objects[i].y);
         //     noFill();
         //     stroke(color);
-        //     rect(elm[i].x, elm[i].y, elm[i].width, elm[i].height);
-        // });
-        for (i = 0; i < objects.length; i++) {
-            confidence = floor(elm[i].confidence * 100);
-            r = random(0, 255);
-            g = random(0, 255);
-            b = random(0, 255);
-            color = `rgb(${r}, ${g}, ${b})`;
-            fill(color);
-            textSize(18);
-            txt = elm[i].label + '\t(' + confidence + '% sure)';
-            text(txt, elm[i].x, elm[i].y);
-            noFill();
-            stroke(color);
-            rect(elm[i].x, elm[i].y, elm[i].width, elm[i].height);
-        }
+        //     rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
+        // }
     }
 }
